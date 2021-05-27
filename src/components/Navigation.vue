@@ -15,9 +15,11 @@
             >Login/Register</router-link
           >
         </ul>
-        <div class="profile" ref="profile">
-          <span>{{ this.$store.state.profileInitials }}</span>
-          <div class="profile-menu">
+        <div v-if="user" class="profile" ref="profile">
+          <span @click="toggleProfileMenu">{{
+            this.$store.state.profileInitials
+          }}</span>
+          <div class="profile-menu" v-show="profileMenu">
             <div class="info">
               <p class="initials">{{ this.$store.state.profileInitials }}</p>
               <div class="right">
@@ -42,11 +44,9 @@
                   <p>Admin</p>
                 </router-link>
               </div>
-              <div class="option">
-                <router-link to="#" class="option">
-                  <SignOutIcon class="icon" />
-                  <p>Sign Out</p>
-                </router-link>
+              <div @click="signOut" class="option">
+                <SignOutIcon class="icon" />
+                <p>Sign Out</p>
               </div>
             </div>
           </div>
@@ -72,6 +72,10 @@ import MenuIcon from "@/assets/Icons/bars-regular.svg";
 import UserIcon from "@/assets/Icons/user-alt-light.svg";
 import AdminIcon from "@/assets/Icons/user-crown-light.svg";
 import SignOutIcon from "@/assets/Icons/sign-out-alt-regular.svg";
+
+import firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
   name: "Navigation",
   components: {
@@ -85,6 +89,7 @@ export default {
       mobile: null,
       mobileNav: null,
       windowWidth: null,
+      profileMenu: null,
     };
   },
   created() {
@@ -104,6 +109,18 @@ export default {
     },
     toggleMobileNav() {
       this.mobileNav = !this.mobileNav;
+    },
+    toggleProfileMenu() {
+      this.profileMenu = !this.profileMenu;
+    },
+    signOut() {
+      firebase.auth().signOut();
+      window.location.reload();
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
     },
   },
 };
