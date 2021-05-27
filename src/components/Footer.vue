@@ -28,7 +28,7 @@
               >Blogs</router-link
             >
             <router-link class="link" to="#">Create Post</router-link>
-            <router-link class="link" :to="{ name: 'Login' }"
+            <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
               >Login In / Register</router-link
             >
           </ul>
@@ -53,6 +53,11 @@ export default {
     Twitter,
     Instagram,
     Linkedin,
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
   },
 };
 </script>

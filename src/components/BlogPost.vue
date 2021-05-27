@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-wrapper no-user">
+  <div class="blog-wrapper" :class="{ 'no-user': !user }">
     <div class="blog-content">
       <div>
         <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
@@ -42,6 +42,11 @@ export default {
     post: {
       type: Object,
       default: null,
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
     },
   },
 };
