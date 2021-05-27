@@ -14,6 +14,7 @@ import Footer from "./components/Footer.vue";
 
 import firebase from "firebase/app";
 import "firebase/auth";
+
 export default {
   name: "app",
   components: {
@@ -26,8 +27,13 @@ export default {
     };
   },
   created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.$store.commit("UPDATE_USER", user);
+      if (user) {
+        this.$store.dispatch("getCurrentUser")
+      }
+    });
     this.checkRoute();
-    console.log(firebase.auth().currentUser);
   },
   mounted() {},
   methods: {

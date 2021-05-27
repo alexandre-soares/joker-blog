@@ -30,7 +30,7 @@ export default {
         return this.$store.state.editPost
       },
       set(payload) {
-        this.$store.commit("toggleEditPost", payload)
+        this.$store.commit("TOGGLE_EDIT_POST", payload)
       }
     }
   },
