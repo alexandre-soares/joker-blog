@@ -27,9 +27,7 @@
             <router-link class="link" :to="{ name: 'Blogs' }"
               >Blogs</router-link
             >
-            <router-link class="link" :to="{ name: 'CreatePost' }"
-              >Create Post</router-link
-            >
+            <router-link class="link" to="#">Create Post</router-link>
             <router-link class="link" :to="{ name: 'Login' }"
               >Login In / Register</router-link
             >
@@ -100,7 +98,7 @@ footer {
         margin-bottom: 16px;
         text-decoration: none;
         font-weight: 600;
-        
+
         @media (min-width: 800px) {
           text-align: initial;
         }
@@ -151,7 +149,6 @@ footer {
       }
 
       .col-2 {
-
         ul {
           height: 100%;
           justify-content: center;

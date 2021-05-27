@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <Navigation />
+      <Navigation v-if="!navigation" />
       <router-view />
       <Footer />
     </div>
@@ -18,12 +18,33 @@ export default {
     Footer,
   },
   data() {
-    return {};
+    return {
+      navigation: null,
+    };
   },
-  created() {},
+  created() {
+    this.checkRoute()
+  },
   mounted() {},
-  methods: {},
-  watch: {},
+  methods: {
+    checkRoute() {
+      if (
+        this.$route.name === "Login" ||
+        this.$route.name === "Register" ||
+        this.$route.name === "ForgotPassword"
+      ) {
+        this.navigation = true;
+        return;
+      }
+
+      this.navigation = false;
+    },
+  },
+  watch: {
+    $route() {
+      this.checkRoute();
+    }
+  },
 };
 </script>
 
@@ -74,7 +95,7 @@ export default {
   }
 }
 
-.button,
+button,
 .router-button {
   transition: all 500ms ease;
   cursor: pointer;
@@ -152,5 +173,11 @@ export default {
       grid-template-columns: repeat(4, 1fr);
     }
   }
+}
+
+.error {
+  text-align: center;
+  font-size: 12px;
+  color: red;
 }
 </style>
