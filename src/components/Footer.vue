@@ -86,6 +86,7 @@ footer {
       display: flex;
       flex-direction: column;
       align-items: center;
+
       @media (min-width: 800px) {
         flex-direction: row;
         align-items: initial;
@@ -99,6 +100,7 @@ footer {
         margin-bottom: 16px;
         text-decoration: none;
         font-weight: 600;
+        
         @media (min-width: 800px) {
           text-align: initial;
         }
