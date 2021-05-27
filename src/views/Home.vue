@@ -59,29 +59,12 @@ export default {
           blogCoverPhoto: "designed-for-everyone",
         },
       ],
-      sampleBlogCards: [
-        {
-          blogTitle: "hello boy",
-          blogCoverPhoto: "stock-1",
-          blogDate: "May 1, 2021",
-        },
-        {
-          blogTitle: "hello boy",
-          blogCoverPhoto: "stock-2",
-          blogDate: "May 1, 2021",
-        },
-        {
-          blogTitle: "hello boy",
-          blogCoverPhoto: "stock-3",
-          blogDate: "May 1, 2021",
-        },
-        {
-          blogTitle: "hello boy",
-          blogCoverPhoto: "stock-4",
-          blogDate: "May 1, 2021",
-        },
-      ],
     };
+  },
+  computed: {
+    sampleBlogCards() {
+      return this.$store.state.sampleBlogCards;
+    },
   },
 };
 </script>
