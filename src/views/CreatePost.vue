@@ -1,6 +1,6 @@
 <template>
   <div class="create-post">
-    <Blog-cover-preview v-show="this.$store.state.blogPhotoPreview"/>
+    <Blog-cover-preview v-show="this.$store.state.blogPhotoPreview" />
     <div class="container">
       <div :class="{ invisible: !error }" class="error-message">
         <p><span>Error: </span>{{ this.errorMsg }}</p>
@@ -31,6 +31,7 @@
           :editorOptions="editorSettings"
           v-model="blogHTML"
           useCustomImageHandler
+          @image-added="imageHandler"
         />
       </div>
       <div class="blog-actions">
@@ -47,7 +48,10 @@ window.Quill = Quill;
 const ImageResize = require("quill-image-resize-module").default;
 Quill.register("modules/imageResize", ImageResize);
 
-import BlogCoverPreview from '../components/BlogCoverPreview.vue';
+import BlogCoverPreview from "../components/BlogCoverPreview.vue";
+
+import firebase from "firebase/app";
+import "firebase/storage";
 
 export default {
   components: { BlogCoverPreview },
@@ -61,19 +65,39 @@ export default {
           imageResize: {},
         },
       },
-      file: null
+      file: null,
     };
   },
   methods: {
     fileChange() {
-      this.file = this.$refs.blogPhoto.files[0]
-      const fileName = this.file.name
-      this.$store.commit("FILENAME_CHANGE", fileName)
-      this.$store.commit("CREATE_FILE_URL", URL.createObjectURL(this.file))
+      this.file = this.$refs.blogPhoto.files[0];
+      const fileName = this.file.name;
+      this.$store.commit("FILENAME_CHANGE", fileName);
+      this.$store.commit("CREATE_FILE_URL", URL.createObjectURL(this.file));
     },
     openPreview() {
-      this.$store.commit("OPEN_PHOTO_PREVIEW")
-    }
+      this.$store.commit("OPEN_PHOTO_PREVIEW");
+    },
+    imageHandler(file, Editor, cursorLocation, resetUploader) {
+      const storageRef = firebase.storage().ref();
+      const docRef = storageRef.child(`documents/blogPostPhotos/${file.name}`);
+
+      // Upload
+      docRef.put(file).on(
+        "state_changed",
+        (snapshot) => {
+          console.log(snapshot);
+        },
+        (err) => {
+          console.log(err);
+        },
+        async () => {
+          const downloadURL = await docRef.getDownloadURL();
+          Editor.insertEmbed(cursorLocation, "image", downloadURL);
+          resetUploader();
+        }
+      );
+    },
   },
   computed: {
     profileId() {
