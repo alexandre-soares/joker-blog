@@ -47,6 +47,12 @@ export default new Vuex.Store({
     profileInitials: null,
   },
   mutations: {
+    NEW_BLOG_POST(state, payload) {
+      state.blogHTML = payload;
+    },
+    UPDATE_BLOG_TITLE(state, payload) {
+      state.blogTitle = payload;
+    },
     TOGGLE_EDIT_POST(state, payload) {
       state.editPost = payload;
     },
