@@ -31,8 +31,14 @@ export default new Vuex.Store({
         blogDate: "May 1, 2021",
       },
     ],
+    blogHTML: "Write your blog title here...",
+    blogTitle: "",
+    blogPhotoName: "",
+    blogPhotoFileURL: null,
+    blogPhotoPreview: null,
     editPost: null,
     user: null,
+    profileAdmin: null,
     profileEmail: null,
     profileFirstName: null,
     profileLastName: null,
@@ -45,30 +51,35 @@ export default new Vuex.Store({
       state.editPost = payload;
     },
     UPDATE_USER(state, payload) {
-      state.user = payload
+      state.user = payload;
+    },
+    SET_PROFILE_ADMIN(state, payload) {
+      state.profileAdmin = payload;
     },
     SET_PROFILE_INFO(state, doc) {
-      state.profileId = doc.id
-      state.profileEmail = doc.data().email
-      state.profileFirstName = doc.data().firstName
-      state.profileLastName = doc.data().lastName
-      state.profileUserName = doc.data().userName
+      state.profileId = doc.id;
+      state.profileEmail = doc.data().email;
+      state.profileFirstName = doc.data().firstName;
+      state.profileLastName = doc.data().lastName;
+      state.profileUserName = doc.data().userName;
     },
     SET_PROFILE_INITIALS(state) {
-      state.profileInitials = state.profileFirstName.match(/(\b\S)?/g).join("") + state.profileLastName.match(/(\b\S)?/g).join("")
+      state.profileInitials =
+        state.profileFirstName.match(/(\b\S)?/g).join("") +
+        state.profileLastName.match(/(\b\S)?/g).join("");
     },
     CHANGE_FIRSTNAME(state, payload) {
-      state.profileFirstName = payload
+      state.profileFirstName = payload;
     },
     CHANGE_LASTNAME(state, payload) {
-      state.profileLastName = payload
+      state.profileLastName = payload;
     },
     CHANGE_USERNAME(state, payload) {
-      state.profileUserName = payload
+      state.profileUserName = payload;
     },
   },
   actions: {
-    async getCurrentUser({ commit }) {
+    async getCurrentUser({ commit }, user) {
       const dataBase = await db
         .collection("users")
         .doc(firebase.auth().currentUser.uid);
@@ -76,17 +87,21 @@ export default new Vuex.Store({
       const dbResults = await dataBase.get();
       commit("SET_PROFILE_INFO", dbResults);
       commit("SET_PROFILE_INITIALS");
+
+      const token = await user.getIdTokenResult();
+      const admin = await token.claims.admin;
+      commit("SET_PROFILE_ADMIN", admin);
     },
-    async updateUserSettings({commit, state}) {
-      const dataBase = await db.collection('users').doc(state.profileId)
+    async updateUserSettings({ commit, state }) {
+      const dataBase = await db.collection("users").doc(state.profileId);
       await dataBase.update({
         fistName: state.profileFirstName,
         lastName: state.profileLastName,
-        userName: state.profileUserName
+        userName: state.profileUserName,
       });
       // update the initials
       commit("SET_PROFILE_INITIALS");
-    }
+    },
   },
   modules: {},
 });

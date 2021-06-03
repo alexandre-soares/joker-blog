@@ -11,6 +11,8 @@ import ForgotPassword from "../views/ForgotPassword.vue";
 import Profile from "../views/Profile.vue";
 import Admin from "../views/Admin.vue";
 
+import CreatePost from "../views/CreatePost.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -68,6 +70,14 @@ const routes = [
     component: Admin,
     meta: {
       title: "Admin Panel",
+    },
+  },
+  {
+    path: "/create-post",
+    name: "CreatePost",
+    component: CreatePost,
+    meta: {
+      title: "Create Post",
     },
   },
 ];

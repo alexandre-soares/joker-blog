@@ -27,7 +27,9 @@
             <router-link class="link" :to="{ name: 'Blogs' }"
               >Blogs</router-link
             >
-            <router-link class="link" to="#">Create Post</router-link>
+            <router-link class="link" v-if="admin" :to="{ name: 'CreatePost' }"
+              >Create Post</router-link
+            >
             <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
               >Login In / Register</router-link
             >
@@ -57,6 +59,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    admin() {
+      return this.$store.state.profileAdmin;
     },
   },
 };
