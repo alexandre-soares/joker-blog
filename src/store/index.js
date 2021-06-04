@@ -9,28 +9,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sampleBlogCards: [
-      {
-        blogTitle: "hello boy",
-        blogCoverPhoto: "stock-1",
-        blogDate: "May 1, 2021",
-      },
-      {
-        blogTitle: "hello boy",
-        blogCoverPhoto: "stock-2",
-        blogDate: "May 1, 2021",
-      },
-      {
-        blogTitle: "hello boy",
-        blogCoverPhoto: "stock-3",
-        blogDate: "May 1, 2021",
-      },
-      {
-        blogTitle: "hello boy",
-        blogCoverPhoto: "stock-4",
-        blogDate: "May 1, 2021",
-      },
-    ],
+    blogPosts: [],
+    postLoaded: [],
     blogHTML: "Write your blog title here...",
     blogTitle: "",
     blogPhotoName: "",
@@ -46,6 +26,14 @@ export default new Vuex.Store({
     profileId: null,
     profileInitials: null,
   },
+  getters: {
+    blogPostsFeed(state) {
+      return state.blogPosts.slice(0, 2);
+    },
+    blogPostsCards(state) {
+      return state.blogPosts.slice(2, 6)
+    }
+  },
   mutations: {
     NEW_BLOG_POST(state, payload) {
       state.blogHTML = payload;
@@ -60,7 +48,7 @@ export default new Vuex.Store({
       state.blogPhotoFileURL = payload;
     },
     OPEN_PHOTO_PREVIEW(state) {
-      state.blogPhotoPreview = !state.blogPhotoPreview
+      state.blogPhotoPreview = !state.blogPhotoPreview;
     },
     TOGGLE_EDIT_POST(state, payload) {
       state.editPost = payload;
@@ -116,6 +104,27 @@ export default new Vuex.Store({
       });
       // update the initials
       commit("SET_PROFILE_INITIALS");
+    },
+    async getPosts({ state }) {
+      const dataBase = await db.collection("blogPosts").orderBy("date", "desc");
+      const dbResults = await dataBase.get();
+      dbResults.forEach((doc) => {
+        // check if post doesn't exist
+        if (!state.blogPosts.some((post) => post.blogID === doc.id)) {
+          const data = {
+            blodID: doc.data().blogID,
+            blogHTML: doc.data().blogHTML,
+            blogCoverPhoto: doc.data().blogCoverPhoto,
+            blogTitle: doc.data().blogTitle,
+            blogData: doc.data().date,
+          };
+
+          state.blogPosts.push(data);
+        }
+      });
+
+      state.postLoaded = true;
+      console.log(state.blogPosts);
     },
   },
   modules: {},

@@ -2,7 +2,7 @@
   <div class="home">
     <BlogPost v-if="!user" :post="welcomeScreen" />
     <BlogPost
-      v-for="(post, index) in sampleBlogPost"
+      v-for="(post, index) in blogPostsFeed"
       :key="index"
       :post="post"
     />
@@ -12,7 +12,7 @@
         <h3>View More Recent Blogs</h3>
         <div class="blog-cards">
           <BlogCard
-            v-for="(post, index) in sampleBlogCards"
+            v-for="(post, index) in blogPostsCards"
             :key="index"
             :post="post"
           />
@@ -47,23 +47,14 @@ export default {
         welcomeScreen: true,
         photo: "coding",
       },
-      sampleBlogPost: [
-        {
-          title: "this is a filler title",
-          blogHTML: "hello oejgdhvspogjsligkjhvnakjbkv",
-          blogCoverPhoto: "beautiful-stories",
-        },
-        {
-          title: "this is a filler title 22",
-          blogHTML: "hello oejgdhvspogjsligkjhvnakjbkv",
-          blogCoverPhoto: "designed-for-everyone",
-        },
-      ],
     };
   },
   computed: {
-    sampleBlogCards() {
-      return this.$store.state.sampleBlogCards;
+    blogPostsCards() {
+      return this.$store.getters.blogPostsCards;
+    },
+    blogPostsFeed() {
+      return this.$store.getters.blogPostsFeed;
     },
     user() {
       return this.$store.state.user;
