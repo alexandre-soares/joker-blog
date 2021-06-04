@@ -11,7 +11,11 @@
           Login/Register <Arrow class="arrow arrow-light" />
         </router-link>
 
-        <router-link class="link" v-else to="#">
+        <router-link
+          class="link"
+          v-else
+          :to="{ name: 'ViewBlog', params: { blogid: this.post.blogID } }"
+        >
           View the post <Arrow class="arrow" />
         </router-link>
       </div>
@@ -22,11 +26,7 @@
         :src="require(`../assets/blogPhotos/${post.photo}.jpg`)"
         alt="photo"
       />
-      <img
-        v-else
-        :src="post.blogCoverPhoto"
-        alt="photo"
-      />
+      <img v-else :src="post.blogCoverPhoto" alt="photo" />
     </div>
   </div>
 </template>

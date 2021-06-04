@@ -130,7 +130,7 @@ export default {
               const database = await db.collection("blogPosts").doc();
 
               await database.set({
-                blodID: database.id,
+                blogID: database.id,
                 blogTitle: this.blogTitle,
                 blogHTML: this.blogHTML,
                 blogCoverPhoto: downloadURL,
@@ -139,9 +139,13 @@ export default {
                 date: timestamp,
               });
 
+              await this.$store.dispatch("getPosts");
               this.loading = false;
 
-              this.$router.push({ name: "ViewBlog" });
+              this.$router.push({
+                name: "ViewBlog",
+                params: { blogid: database.id },
+              });
             }
           );
           return;

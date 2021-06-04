@@ -112,19 +112,18 @@ export default new Vuex.Store({
         // check if post doesn't exist
         if (!state.blogPosts.some((post) => post.blogID === doc.id)) {
           const data = {
-            blodID: doc.data().blogID,
+            blogID: doc.data().blogID,
             blogHTML: doc.data().blogHTML,
             blogCoverPhoto: doc.data().blogCoverPhoto,
             blogTitle: doc.data().blogTitle,
-            blogData: doc.data().date,
+            blogDate: doc.data().date,
           };
 
           state.blogPosts.push(data);
         }
       });
 
-      state.postLoaded = true;
-      console.log(state.blogPosts);
+      state.postLoaded = true
     },
   },
   modules: {},
