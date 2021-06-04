@@ -31,8 +31,8 @@ export default new Vuex.Store({
       return state.blogPosts.slice(0, 2);
     },
     blogPostsCards(state) {
-      return state.blogPosts.slice(2, 6)
-    }
+      return state.blogPosts.slice(2, 6);
+    },
   },
   mutations: {
     NEW_BLOG_POST(state, payload) {
@@ -52,6 +52,11 @@ export default new Vuex.Store({
     },
     TOGGLE_EDIT_POST(state, payload) {
       state.editPost = payload;
+    },
+    FILTER_BLOG_POST(state, payload) {
+      state.blogPosts = state.blogPosts.filter(
+        (post) => post.blogID !== payload
+      );
     },
     UPDATE_USER(state, payload) {
       state.user = payload;
@@ -79,6 +84,12 @@ export default new Vuex.Store({
     },
     CHANGE_USERNAME(state, payload) {
       state.profileUserName = payload;
+    },
+    SET_BLOG_STATE(state, payload) {
+      state.blogTitle = payload.blogTitle;
+      state.blogHTML = payload.blogHTML;
+      state.blogPhotoFileURL = payload.blogCoverPhoto;
+      state.blogPhotoName = payload.blogCoverPhotoName;
     },
   },
   actions: {
@@ -117,13 +128,23 @@ export default new Vuex.Store({
             blogCoverPhoto: doc.data().blogCoverPhoto,
             blogTitle: doc.data().blogTitle,
             blogDate: doc.data().date,
+            blogCoverPhotoName: doc.data().blogCoverPhotoName,
           };
 
           state.blogPosts.push(data);
         }
       });
 
-      state.postLoaded = true
+      state.postLoaded = true;
+    },
+    async updatePost({ commit, dispatch }, payload) {
+      commit("FILTER_BLOG_POST", payload);
+      await dispatch('getPosts')
+    },
+    async deletePost({ commit }, payload) {
+      const getPost = await db.collection("blogPosts").doc(payload);
+      await getPost.delete();
+      commit("FILTER_BLOG_POST", payload);
     },
   },
   modules: {},

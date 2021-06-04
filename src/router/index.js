@@ -17,6 +17,8 @@ import BlogPreview from "../views/BlogPreview.vue";
 
 import ViewBlog from "../views/ViewBlog.vue";
 
+import EditPost from "../views/EditPost.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -98,6 +100,14 @@ const routes = [
     component: ViewBlog,
     meta: {
       title: "View Blog Post",
+    },
+  },
+  {
+    path: "/edit-post/:blogid",
+    name: "EditPost",
+    component: EditPost,
+    meta: {
+      title: "Edit Post Post",
     },
   },
 ];
