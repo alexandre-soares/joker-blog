@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import NewHomepage from "../views/NewHomepage.vue";
 
 import Blogs from "../views/Blogs.vue";
 
@@ -12,12 +13,12 @@ import Profile from "../views/Profile.vue";
 import Admin from "../views/Admin.vue";
 
 import CreatePost from "../views/CreatePost.vue";
-
 import BlogPreview from "../views/BlogPreview.vue";
-
 import ViewBlog from "../views/ViewBlog.vue";
-
 import EditPost from "../views/EditPost.vue";
+
+import firebase from "firebase/app";
+import "firebase/auth";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,16 @@ const routes = [
     component: Home,
     meta: {
       title: "Home",
+      requiresAuth: false,
+    },
+  },
+  {
+    path: "/new-homepage",
+    name: "NewHomepage",
+    component: NewHomepage,
+    meta: {
+      title: "NewHomepage",
+      requiresAuth: false,
     },
   },
   {
@@ -36,6 +47,7 @@ const routes = [
     component: Blogs,
     meta: {
       title: "Blogs",
+      requiresAuth: false,
     },
   },
   {
@@ -44,6 +56,7 @@ const routes = [
     component: Login,
     meta: {
       title: "Login",
+      requiresAuth: false,
     },
   },
   {
@@ -52,6 +65,7 @@ const routes = [
     component: Register,
     meta: {
       title: "Register",
+      requiresAuth: false,
     },
   },
   {
@@ -60,6 +74,7 @@ const routes = [
     component: ForgotPassword,
     meta: {
       title: "Forgot your password",
+      requiresAuth: false,
     },
   },
   {
@@ -68,6 +83,7 @@ const routes = [
     component: Profile,
     meta: {
       title: "Profile",
+      requiresAuth: true,
     },
   },
   {
@@ -76,6 +92,8 @@ const routes = [
     component: Admin,
     meta: {
       title: "Admin Panel",
+      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
   {
@@ -84,6 +102,8 @@ const routes = [
     component: CreatePost,
     meta: {
       title: "Create Post",
+      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
   {
@@ -92,6 +112,8 @@ const routes = [
     component: BlogPreview,
     meta: {
       title: "Blog Preview",
+      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
   {
@@ -100,6 +122,7 @@ const routes = [
     component: ViewBlog,
     meta: {
       title: "View Blog Post",
+      requiresAuth: false,
     },
   },
   {
@@ -108,6 +131,8 @@ const routes = [
     component: EditPost,
     meta: {
       title: "Edit Post Post",
+      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
 ];
@@ -119,8 +144,31 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} | Joker's Blog`
-  next()
-})
+  document.title = `${to.meta.title} | Joker's Blog`;
+  next();
+});
+
+router.beforeEach(async (to, from, next) => {
+  let user = firebase.auth().currentUser;
+  let admin = null;
+  if (user) {
+    let token = await user.getIdTokenResult();
+    admin = token.claims.admin;
+  }
+
+  if (to.matched.some((res) => res.meta.requiresAuth)) {
+    if (user) {
+      if (to.matched.some((res) => res.meta.requiresAdmin)) {
+        if (admin) {
+          return next();
+        }
+        return next({ name: "Home" });
+      }
+      return next();
+    }
+    return next({ name: "Home" });
+  }
+  return next();
+});
 
 export default router;

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Navigation from "@/components/Navigation.vue";
+import Navigation from "@/components/Layout/Navigation.vue";
 import Footer from "./components/Footer.vue";
 
 import firebase from "firebase/app";
@@ -91,11 +91,12 @@ export default {
 }
 
 .arrow {
+  margin-bottom: -2px;
   margin-left: 8px;
   width: 12px;
 
   path {
-    fill: #000;
+    fill: #fff;
   }
 }
 
@@ -105,15 +106,16 @@ export default {
   }
 }
 
-button,
+// BUTTONS
+
+.btn,
 .router-button {
   transition: all 500ms ease;
   cursor: pointer;
-  margin-top: 24px;
   padding: 12px 24px;
-  background-color: #303030;
   color: #fff;
-  border-radius: 20px;
+  margin: 0 10px;
+  border-radius: 10px;
   border: none;
   text-transform: uppercase;
 
@@ -121,8 +123,31 @@ button,
     outline: none;
   }
 
-  &:hover {
-    background-color: rgba(48, 48, 48, 0.7);
+  &--primary {
+    background: rgb(71, 92, 248);
+    background: linear-gradient(
+      90deg,
+      rgba(71, 92, 248, 1) 0%,
+      rgba(30, 68, 219, 1) 100%
+    );
+
+    &:hover {
+      background: rgb(71, 92, 248);
+      background: linear-gradient(
+        90deg,
+        rgb(60, 77, 211) 0%,
+        rgb(21, 49, 163) 100%
+      );
+    }
+  }
+
+  &--secondary {
+    background-color: #444557;
+
+     &:hover {
+    background-color: #2f303b;
+
+    }
   }
 }
 
@@ -189,5 +214,75 @@ button,
   text-align: center;
   font-size: 12px;
   color: red;
+}
+
+// BOOTSTRAP CONTAINER
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .container,
+  .container-sm {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container,
+  .container-sm,
+  .container-md {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 1140px;
+  }
 }
 </style>
