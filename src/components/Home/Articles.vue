@@ -9,7 +9,7 @@
         <div
           class="article"
           v-bind:style="{
-            backgroundImage: `url('${mainArticle.background}')`,
+            'background-image': 'url(' + mainArticle.background + ')',
           }"
         >
           <div class="article__info">
@@ -33,7 +33,7 @@
           v-for="(article, index) in otherArticles"
           :key="index"
           v-bind:style="{
-            'background-image': article.background,
+            'background-image': 'url(' + article.background + ')',
           }"
         >
           <div class="article__info">
@@ -57,7 +57,7 @@ export default {
     return {
       mainArticle: {
         title: "Why Super Mario Odyssey Controls are so good?",
-        background: '../../assets/imgs/wallpapers/odyssey.png',
+        background: require("../../assets/imgs/wallpapers/odyssey.png"),
         icon: require("../../assets/imgs/current-games/mario odyssey.jpeg"),
         paragraph: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Tenetur magnam hic sit quisquam eius nemo molestias sequi
@@ -72,8 +72,8 @@ export default {
         },
         {
           title: "Why I felt Monster Hunter Rise (a little bit) disappointing",
-          background: require("../../assets/imgs/wallpapers/mh rise.jpeg"),
-          icon: require("../../assets/imgs/current-games/mh rise.jpeg"),
+          background: require("../../assets/imgs/wallpapers/mh-rise.jpeg"),
+          icon: require("../../assets/imgs/current-games/mh-rise.jpeg"),
         },
       ],
     };
@@ -91,8 +91,20 @@ export default {
   align-items: flex-end;
   background-size: 100%;
   background-position: center center;
+  background-repeat: no-repeat;
   cursor: pointer;
   transition: all 200ms ease-in;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+    background: #14112e4d;
+  }
 
   &:hover {
     background-size: 105%;
@@ -130,6 +142,8 @@ export default {
     margin-top: auto;
     display: flex;
     align-items: flex-end;
+    width: 100%;
+    z-index: 999;
   }
 
   &__img--icon {

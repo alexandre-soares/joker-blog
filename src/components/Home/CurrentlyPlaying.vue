@@ -37,7 +37,7 @@ export default {
         },
         {
           name: "Monster Hunter Rise",
-          img: require("../../assets/imgs/current-games/mh rise.jpeg"),
+          img: require("../../assets/imgs/current-games/mh-rise.jpeg"),
         },
         {
           name: "Super Mario Odyssey",
@@ -73,8 +73,8 @@ export default {
     border-radius: 10px;
     overflow: hidden;
     height: 250px;
-    width: 210px;
-
+    width: 214px;
+   
     & img {
       height: 100%;
       width: 100%;

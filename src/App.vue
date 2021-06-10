@@ -101,7 +101,7 @@ export default {
   }
 }
 
-// IMG 
+// IMG
 
 img {
   width: 100%;
@@ -126,6 +126,7 @@ img {
 
 .btn,
 .router-button {
+  position: relative;
   transition: all 500ms ease;
   cursor: pointer;
   padding: 12px 24px;
@@ -146,23 +147,37 @@ img {
       rgba(71, 92, 248, 1) 0%,
       rgba(30, 68, 219, 1) 100%
     );
+    z-index: 1;
 
-    &:hover {
-      background: rgb(71, 92, 248);
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 10px;
+      background: rgb(40, 57, 185);
       background: linear-gradient(
         90deg,
-        rgb(60, 77, 211) 0%,
-        rgb(21, 49, 163) 100%
+        rgb(49, 64, 173) 0%,
+        rgb(15, 31, 97) 100%
       );
+      z-index: -1;
+      transition: opacity 0.5s linear;
+      opacity: 0;
+    }
+
+    &:hover::before {
+      opacity: 1;
     }
   }
 
   &--secondary {
     background-color: #444557;
 
-     &:hover {
-    background-color: #2f303b;
-
+    &:hover {
+      background-color: #2f303b;
     }
   }
 }

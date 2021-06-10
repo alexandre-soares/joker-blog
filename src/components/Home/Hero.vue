@@ -49,7 +49,7 @@ export default {
     height: 100%;
     width: 100%;
     z-index: 1;
-    background: #14112ee3;
+    background: #14112ebd;
     box-shadow: inset 90px 70px 200px #14112e, inset -90px -70px 200px #14112e;
   }
 
