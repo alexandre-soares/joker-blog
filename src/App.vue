@@ -74,11 +74,6 @@ export default {
   min-height: 100vh;
 }
 
-.container {
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
 .link {
   cursor: pointer;
   text-decoration: none;
@@ -103,6 +98,27 @@ export default {
 .arrow-light {
   path {
     fill: #fff;
+  }
+}
+
+// IMG 
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+// HEADLINE
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    color: white;
+    font-size: 30px;
+    letter-spacing: 1px;
   }
 }
 

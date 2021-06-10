@@ -20,6 +20,7 @@
 import Arrow from "@/assets/Icons/arrow-right-light.svg";
 
 export default {
+  name: "Hero",
   components: {
     Arrow,
   },
@@ -67,7 +68,7 @@ export default {
   &__title {
     color: white;
     z-index: 5;
-    margin: 30px 0;
+    margin: 30px 0 50px;
     font-size: 60px;
   }
 

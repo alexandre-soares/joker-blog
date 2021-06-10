@@ -152,6 +152,7 @@ export default {
 .nav {
   display: flex;
   align-items: center;
+  padding: 20px 30px;
 
   &__logo-container {
     width: 60px;
