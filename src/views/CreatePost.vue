@@ -20,7 +20,7 @@
             @change="fileChange"
           />
           <button
-            class="preview"
+            class="preview btn"
             :class="{ 'button-inactive': !this.$store.state.blogPhotoFileURL }"
             @click="openPreview"
           >
@@ -217,14 +217,11 @@ export default {
     color: #fff;
   }
 
-  label,
-  button,
-  .router-button {
+  label {
     transition: 0.5s ease-in-out all;
     align-self: center;
     font-size: 14px;
     cursor: pointer;
-    border-radius: 20px;
     padding: 12px 24px;
     color: #fff;
     background-color: #303030;

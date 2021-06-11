@@ -77,7 +77,7 @@ export default {
   flex-direction: column;
   border-radius: 8px;
   background-color: #fff;
-  max-height: 420px;
+  max-height: 500px;
   transition: 0.5s all ease;
 
   &:hover {

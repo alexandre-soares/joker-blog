@@ -10,7 +10,7 @@
 
 <script>
 import Navigation from "@/components/Layout/Navigation.vue";
-import Footer from "./components/Footer.vue";
+import Footer from "./components/Layout/Footer.vue";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -99,6 +99,12 @@ export default {
   path {
     fill: #fff;
   }
+}
+
+// UTILITIES
+
+.hide {
+  visibility: hidden;
 }
 
 // IMG

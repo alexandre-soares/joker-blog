@@ -43,6 +43,8 @@ export default {
   background-position: center center;
   background-repeat: no-repeat;
   cursor: pointer;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.473);
   transition: all 200ms ease-in;
 
   &::after {

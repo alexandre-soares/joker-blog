@@ -44,10 +44,10 @@
 </template>
 
 <script>
-import YouTube from "../assets/Icons/youtube-brands.svg";
-import Twitter from "../assets/Icons/twitter-brands.svg";
-import Instagram from "../assets/Icons/instagram-brands.svg";
-import Linkedin from "../assets/Icons/linkedin-brands.svg";
+import YouTube from "../../assets/Icons/youtube-brands.svg";
+import Twitter from "../../assets/Icons/twitter-brands.svg";
+import Instagram from "../../assets/Icons/instagram-brands.svg";
+import Linkedin from "../../assets/Icons/linkedin-brands.svg";
 export default {
   name: "footer-vue",
   components: {
@@ -70,8 +70,8 @@ export default {
 <style lang="scss" scoped>
 footer {
   margin-top: auto;
-  padding: 100px 25px;
-  background-color: #303030;
+  padding: 50px 25px;
+  background-color: #141414;
 
   .container {
     display: flex;

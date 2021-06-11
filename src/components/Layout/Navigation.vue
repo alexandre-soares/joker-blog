@@ -45,7 +45,11 @@
           </div>
           <div class="options" @click="toggleProfileMenu">
             <div class="option">
-              <router-link @click="toggleProfileMenu" :to="{ name: 'Profile' }" class="option">
+              <router-link
+                @click="toggleProfileMenu"
+                :to="{ name: 'Profile' }"
+                class="option"
+              >
                 <UserIcon class="icon" />
                 <p>Profile</p>
               </router-link>

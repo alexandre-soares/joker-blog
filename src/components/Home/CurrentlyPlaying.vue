@@ -3,7 +3,7 @@
     <div class="container">
       <div class="headline">
         <h2>Currently Playing Games</h2>
-        <button class="btn btn--secondary">See All</button>
+        <button  class="btn btn--secondary hide">See All</button>
       </div>
       <div class="cards">
         <div class="card" v-for="(game, index) in currentGames" :key="index">

@@ -9,9 +9,9 @@
       <div class="hero__img-container">
         <img class="hero__img" src="../../assets/imgs/hero img.png" alt="img" />
       </div>
-      <button class="btn btn--primary">
+      <router-link tag="button" :to="{ name: 'Blogs' }" class="btn btn--primary">
         Start Exploring <Arrow class="arrow" />
-      </button>
+      </router-link>
     </div>
   </div>
 </template>
