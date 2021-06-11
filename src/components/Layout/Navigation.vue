@@ -43,9 +43,9 @@
               <p>{{ this.$store.state.profileEmail }}</p>
             </div>
           </div>
-          <div class="options">
+          <div class="options" @click="toggleProfileMenu">
             <div class="option">
-              <router-link :to="{ name: 'Profile' }" class="option">
+              <router-link @click="toggleProfileMenu" :to="{ name: 'Profile' }" class="option">
                 <UserIcon class="icon" />
                 <p>Profile</p>
               </router-link>
@@ -189,10 +189,11 @@ export default {
   background-color: #303030;
 
   .profile-menu {
+    z-index: 999;
     position: absolute;
     top: 65px;
     right: 0;
-    width: 250px;
+    width: 300px;
     background-color: #303030;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);

@@ -3,8 +3,8 @@
     <div class="container">
       <span class="hero__slogan">Discover Games you will love</span>
       <h1 class="hero__title">
-        Read about games <br />
-        you enjoy
+        Welcome to Requiem's <br />
+        Streaming Blog
       </h1>
       <div class="hero__img-container">
         <img class="hero__img" src="../../assets/imgs/hero img.png" alt="img" />
@@ -61,7 +61,7 @@ export default {
   &__slogan {
     color: rgb(71, 92, 248);
     font-size: 20px;
-
+    font-weight: 600;
     z-index: 2;
   }
 
@@ -79,7 +79,7 @@ export default {
 
     position: absolute;
     top: 50%;
-    right: 20%;
+    right: 10%;
     transform: translate(-50%, -50%);
 
     & img {

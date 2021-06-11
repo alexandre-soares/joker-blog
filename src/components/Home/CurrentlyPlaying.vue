@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .currently-playing {
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 .cards {

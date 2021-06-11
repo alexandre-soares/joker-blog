@@ -22,7 +22,7 @@
       <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }"
         >Forgot your Password?</router-link
       >
-      <button @click.prevent="signIn">Sign In</button>
+      <button @click.prevent="signIn" class="btn btn--primary">Sign In</button>
       <div class="angle"></div>
     </form>
     <div class="background"></div>

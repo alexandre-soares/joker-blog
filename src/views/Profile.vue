@@ -9,7 +9,7 @@
       <h2>Account Settings</h2>
       <div class="profile-info">
         <div class="initials">{{ $store.state.profileInitials }}</div>
-        <div class="admin-badge">
+        <div class="admin-badge" v-if="admin">
           <AdminIcon class="icon" />
           <span>admin</span>
         </div>
@@ -29,7 +29,7 @@
           <label for="email">Email:</label>
           <input disabled type="text" id="email" v-model="email" />
         </div>
-        <button @click="updateProfile">Save Changes</button>
+        <button @click="updateProfile" class="btn btn--primary">Save Changes</button>
       </div>
     </div>
   </div>
@@ -87,6 +87,9 @@ export default {
     },
     email() {
       return this.$store.state.profileEmail;
+    },
+     admin() {
+      return this.$store.state.profileAdmin;
     },
   },
 };

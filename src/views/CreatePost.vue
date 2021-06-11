@@ -38,7 +38,7 @@
         />
       </div>
       <div class="blog-actions">
-        <button @click="uploadBlog">Publish Blog</button>
+        <button @click="uploadBlog" class="btn btn--primary">Publish Blog</button>
         <router-link :to="{ name: 'BlogPreview' }" class="router-button"
           >Post Preview</router-link
         >
@@ -76,6 +76,11 @@ export default {
       file: null,
       loading: null,
     };
+  },
+  mounted () {
+    this.blogTitle = "";
+    this.blogHTML = "Write your blog here..."
+    this.$store.state.blogPhotoName = ""
   },
   methods: {
     fileChange() {
@@ -135,6 +140,8 @@ export default {
                 blogHTML: this.blogHTML,
                 blogCoverPhoto: downloadURL,
                 blogCoverPhotoName: this.blogCoverPhotoName,
+                blogIcon: "null",
+                blocIconName: "null",
                 profileID: this.profileId,
                 date: timestamp,
               });

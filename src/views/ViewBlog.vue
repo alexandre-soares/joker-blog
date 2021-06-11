@@ -34,8 +34,9 @@ export default {
         return post.blogID === this.$route.params.blogid;
       });
       console.log(this.$store.state.postLoaded);
-    }, 200);
+    }, 500);
   },
+  
 };
 </script>
 

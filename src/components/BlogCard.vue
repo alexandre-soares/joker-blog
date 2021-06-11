@@ -1,5 +1,9 @@
 <template>
-  <div class="blog-card">
+  <router-link
+    class="link blog-card"
+    tag="div"
+    :to="{ name: 'ViewBlog', params: { blogid: this.post.blogID } }"
+  >
     <div v-show="editPost" class="icons">
       <div class="icon" @click="editBlog">
         <Edit class="edit" />
@@ -14,7 +18,9 @@
       <h6>
         Posted on:
         {{
-          new Date(post.blogDate).toLocaleString("en-us", { dateStyle: "long" })
+          new Date(post.blogDate).toLocaleString("en-us", {
+            dateStyle: "long",
+          })
         }}
       </h6>
       <router-link
@@ -24,7 +30,7 @@
         View The Post <Arrow class="arrow" />
       </router-link>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>

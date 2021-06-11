@@ -208,6 +208,7 @@ img {
 }
 
 .button-inactive {
+  border: none;
   pointer-events: none !important;
   cursor: none !important;
   background-color: rgba(128, 128, 128, 0.5) !important;
