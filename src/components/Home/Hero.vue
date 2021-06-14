@@ -9,7 +9,11 @@
       <div class="hero__img-container">
         <img class="hero__img" src="../../assets/imgs/hero img.png" alt="img" />
       </div>
-      <router-link tag="button" :to="{ name: 'Blogs' }" class="btn btn--primary">
+      <router-link
+        tag="button"
+        :to="{ name: 'Blogs' }"
+        class="btn btn--primary"
+      >
         Start Exploring <Arrow class="arrow" />
       </router-link>
     </div>
@@ -63,6 +67,10 @@ export default {
     font-size: 20px;
     font-weight: 600;
     z-index: 2;
+
+      @media (max-width: 800px) {
+      font-size: 15px;
+    }
   }
 
   &__title {
@@ -70,6 +78,10 @@ export default {
     z-index: 5;
     margin: 30px 0 50px;
     font-size: 60px;
+
+    @media (max-width: 800px) {
+      font-size: 40px;
+    }
   }
 
   &__img-container {
@@ -82,6 +94,10 @@ export default {
     right: 10%;
     transform: translate(-50%, -50%);
 
+    @media (max-width: 800px) {
+      display: none;
+    }
+
     & img {
       z-index: 2;
       height: 100%;
@@ -92,6 +108,13 @@ export default {
 
   & .btn--primary {
     z-index: 2;
+
+    @media (max-width: 800px) {
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+    }
   }
 }
 </style>

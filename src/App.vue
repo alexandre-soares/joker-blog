@@ -125,6 +125,10 @@ img {
     color: white;
     font-size: 30px;
     letter-spacing: 1px;
+
+      @media (max-width: 800px) {
+      font-size: 25px;
+    }
   }
 }
 

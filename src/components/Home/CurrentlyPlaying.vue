@@ -61,12 +61,13 @@ export default {
   margin: 40px 0;
   width: 100%;
   overflow: scroll;
+  flex-wrap: wrap;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  margin: 0 5px;
+  margin: 20px 5px;
   text-align: center;
 
   &__img-container {

@@ -68,9 +68,13 @@
         </div>
       </div>
     </div>
-    <MenuIcon class="menu-icon" @click="toggleMobileNav" v-show="mobile" />
+    <MenuIcon
+      class="menu-icon menu-icon--burger"
+      @click="toggleMobileNav"
+      v-show="mobile"
+    />
     <transition name="mobile-nav">
-      <ul class="mobile-nav" v-show="mobileNav">
+      <ul class="mobile-nav" v-show="mobileNav" @click="toggleMobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
         <router-link class="link" v-if="admin" :to="{ name: 'CreatePost' }"
@@ -188,6 +192,8 @@ export default {
   justify-content: center;
   width: 40px;
   height: 40px;
+  margin-left: auto;
+  margin-right: 20px;
   border-radius: 50%;
   color: #fff;
   background-color: #303030;
@@ -266,10 +272,16 @@ export default {
 .menu-icon {
   cursor: pointer;
   position: absolute;
-  top: 32px;
+  top: 37px;
   right: 25px;
   height: 25px;
   width: auto;
+
+  &--burger {
+    & path {
+      fill: #fff;
+    }
+  }
 }
 
 .mobile-nav {
@@ -283,6 +295,7 @@ export default {
   background-color: #303030;
   top: 0;
   left: 0;
+  z-index: 999;
 
   .link {
     padding: 15px 0;

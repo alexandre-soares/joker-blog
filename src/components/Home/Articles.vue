@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     blogPosts() {
-      return this.$store.state.blogPosts;
+      return this.$store.state.blogPosts.slice(0, 4);
     },
   },
 };
@@ -59,6 +59,11 @@ export default {
   & div:nth-child(4) {
     grid-column: 3 / 4;
     grid-row: 3 / 3;
+  }
+
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>

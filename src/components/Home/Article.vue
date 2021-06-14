@@ -47,6 +47,10 @@ export default {
   background-color: rgba(0, 0, 0, 0.473);
   transition: all 200ms ease-in;
 
+  @media (max-width: 800px) {
+    height: 190px;
+  }
+
   &::after {
     content: "";
     position: absolute;
