@@ -126,8 +126,8 @@ img {
     font-size: 30px;
     letter-spacing: 1px;
 
-      @media (max-width: 800px) {
-      font-size: 25px;
+    @media (max-width: 800px) {
+      font-size: 18px;
     }
   }
 }
@@ -145,6 +145,10 @@ img {
   border-radius: 10px;
   border: none;
   text-transform: uppercase;
+
+  @media (max-width: 800px) {
+    font-size: 13px;
+  }
 
   &:focus {
     outline: none;

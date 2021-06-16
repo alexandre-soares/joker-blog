@@ -162,6 +162,10 @@ export default {
   align-items: center;
   padding: 20px 30px;
 
+  @media (max-width: 800px) {
+    padding: 20px 15px;
+  }
+
   &__logo-container {
     width: 60px;
     height: 60px;
@@ -180,6 +184,12 @@ export default {
     & li {
       margin: 0 10px;
       color: white;
+    }
+  }
+
+  &__actions {
+    @media (max-width: 800px) {
+      display: none;
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="headline">
         <h2>Currently Playing Games</h2>
-        <button  class="btn btn--secondary hide">See All</button>
+        <button class="btn btn--secondary hide">See All</button>
       </div>
       <div class="cards">
         <div class="card" v-for="(game, index) in currentGames" :key="index">
@@ -61,7 +61,10 @@ export default {
   margin: 40px 0;
   width: 100%;
   overflow: scroll;
-  flex-wrap: wrap;
+
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+  }
 }
 
 .card {
@@ -75,7 +78,7 @@ export default {
     overflow: hidden;
     height: 250px;
     width: 214px;
-   
+
     & img {
       height: 100%;
       width: 100%;
@@ -89,5 +92,9 @@ export default {
     font-size: 16px;
     margin-top: 20px;
   }
+}
+
+button {
+  display: none;
 }
 </style>
