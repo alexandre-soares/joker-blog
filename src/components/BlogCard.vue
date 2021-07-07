@@ -1,9 +1,5 @@
 <template>
-  <router-link
-    class="link blog-card"
-    tag="div"
-    :to="{ name: 'ViewBlog', params: { blogid: this.post.blogID } }"
-  >
+  <div class="blog-card">
     <div v-show="editPost" class="icons">
       <div class="icon" @click="editBlog">
         <Edit class="edit" />
@@ -30,7 +26,7 @@
         View The Post <Arrow class="arrow" />
       </router-link>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
